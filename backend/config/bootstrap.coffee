@@ -1,3 +1,5 @@
+store = require '../model/news'
+
 module.exports =
   bootstrap: ->
     @cron.map (at) ->

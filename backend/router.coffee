@@ -1,6 +1,6 @@
 Router = require 'koa-router'
 router = new Router()
-hkex = require './model/hkex'
+hkex = require './model/news'
   .actions [
     'find'
   ]
