@@ -1,0 +1,38 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "HKEx news scraper backend",
+  "main": "index.coffee",
+  "dependencies": {
+    "@koa/cors": "^3.0.0",
+    "bluebird": "^3.5.4",
+    "coffeescript": "^2.4.0",
+    "jsOAuth2": "https://github.com/twhtanghk/jsOAuth2",
+    "koa": "^2.7.0",
+    "koa-404-handler": "^0.0.2",
+    "koa-better-error-handler": "^2.0.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-logger": "^3.2.0",
+    "koa-methodoverride": "^2.0.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "monk": "^6.0.6"
+  },
+  "devDependencies": {
+    "mocha": "^6.0.2",
+    "supertest": "^4.0.2"
+  },
+  "scripts": {
+    "test": "mocha test/bootstrap.coffee test/unit/*.coffee"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twhtanghk/hkexKoa.git"
+  },
+  "author": "Tommy Tang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/twhtanghk/hkexKoa/issues"
+  },
+  "homepage": "https://github.com/twhtanghk/hkexKoa#readme"
+}

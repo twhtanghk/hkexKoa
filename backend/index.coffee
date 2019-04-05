@@ -6,7 +6,6 @@ router = require './router'
 serve = require 'koa-static'
 cors = require '@koa/cors'
 Promise = require 'bluebird'
-passport = require 'koa-passport'
 
 app = new Koa()
 app.context.onerror = require 'koa-better-error-handler'
@@ -17,7 +16,6 @@ module.exports = new Promise (resolve, reject) ->
     .use require 'koa-404-handler'
     .use bodyParser()
     .use methodOverride()
-    .use passport.initialize()
     .use cors()
     .use router.routes()
     .use router.allowedMethods()
