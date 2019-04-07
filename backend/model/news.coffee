@@ -31,9 +31,7 @@ class News extends Model
     News.pattern.test(title)
 
   last: ->
-    @model
-      .find()
-      .sort releasedAt: -1
-      .limit 1
+    await @model
+      .findOne {}, sort: releasedAt: -1
 
 module.exports = new News()
