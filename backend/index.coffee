@@ -23,4 +23,6 @@ module.exports = new Promise (resolve, reject) ->
     .listen parseInt(process.env.PORT) || 3000, (err) ->
       if err?
         return reject err
+      require('config')()
+        .bootstrap()
       resolve server

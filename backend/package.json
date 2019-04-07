@@ -7,6 +7,7 @@
     "@koa/cors": "^3.0.0",
     "bluebird": "^3.5.4",
     "coffeescript": "^2.4.0",
+    "config": "https://github.com/twhtanghk/config",
     "hkex": "https://github.com/twhtanghk/hkex",
     "jsOAuth2": "https://github.com/twhtanghk/jsOAuth2",
     "koa": "^2.7.0",
@@ -17,13 +18,15 @@
     "koa-methodoverride": "^2.0.0",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
-    "monk": "^6.0.6"
+    "monk": "^6.0.6",
+    "node-schedule": "^1.3.2"
   },
   "devDependencies": {
     "mocha": "^6.0.2",
     "supertest": "^4.0.2"
   },
   "scripts": {
+    "start": "coffee index.coffee",
     "test": "mocha test/bootstrap.coffee test/unit/*.coffee"
   },
   "repository": {
