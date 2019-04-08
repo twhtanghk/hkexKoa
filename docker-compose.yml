@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+    ports:
+      - 27017
+    volumes:
+      - ./data:/data/db
+    command: mongod --directoryperdb --bind_ip 0.0.0.0
+    env_file:
+      - ../.env
+
+  hkexkoa:
+    depends_on:
+      - mongo
+    image: twhtanghk/hkexkoa
+    ports:
+      - 3000
+    env_file:
+      - ../.env
+      - ./.env
