@@ -1,6 +1,12 @@
 {EnvironmentPlugin} = require 'webpack'
 CompressionWebpackPlugin = require 'compression-webpack-plugin'
 
+{URL} = require 'url'
+{HKEXNew} = require 'hkex'
+url = new URL HKEXNew.$urlRoot.ch
+url.pathname = ''
+process.env.HKEX_URL = url.toString()
+
 module.exports =
   publicPath: './'
   outputDir: '../backend/dist'
@@ -23,6 +29,7 @@ module.exports =
     config.node.url = true
     config.plugins.push new EnvironmentPlugin [
       'API_URL'
+      'HKEX_URL'
     ]
     config.module.rules.push
       test: /\.coffee$/

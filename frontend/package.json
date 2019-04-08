@@ -23,6 +23,7 @@
     "compression-webpack-plugin": "^2.0.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "hkex": "https://github.com/twhtanghk/hkex",
     "jsOAuth2": "https://github.com/twhtanghk/jsOAuth2",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
