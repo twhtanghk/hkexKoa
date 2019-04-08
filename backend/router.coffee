@@ -1,9 +1,9 @@
 Router = require 'koa-router'
 router = new Router()
-hkex = require './model/news'
+news = require './model/news'
   .actions [
     'find'
   ]
 
 module.exports = router
-  .get '/api/hkex', hkex.find
+  .get '/api/news', news.find
