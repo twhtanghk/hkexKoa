@@ -3,7 +3,7 @@ CompressionWebpackPlugin = require 'compression-webpack-plugin'
 
 {URL} = require 'url'
 {HKEXNew} = require 'hkex'
-url = new URL HKEXNew.$urlRoot.ch
+url = new URL HKEXNew.url page: 1
 url.pathname = ''
 process.env.HKEX_URL = url.toString()
 
