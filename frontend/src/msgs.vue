@@ -1,23 +1,23 @@
 <template>
   <div>
-  <v-list two-line>
-    <template v-for="(msg, i) in msgs">
-      <v-list-item>
-        <v-list-item-avatar>
-          <v-icon class="grey white--text">event_note</v-icon>
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title v-html="title(msg)" />
-          <v-list-item-subtitle v-html="subtitle(msg)" />
-        </v-list-item-content>
-        <v-list-item-action>
-          <v-btn icon ripple :href="msg.link" target="_blank">
-            <v-icon class="grey white--text">link</v-icon>
-          </v-btn>
-        </v-list-item-action>
-      </v-list-item>
-    </template>
-  </v-list>
+    <v-list two-line>
+      <template v-for="(msg, i) in msgs">
+        <v-list-item>
+          <v-list-item-avatar>
+            <v-icon class="grey white--text">event_note</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title v-html="title(msg)" />
+            <v-list-item-subtitle v-html="subtitle(msg)" />
+          </v-list-item-content>
+          <v-list-item-action>
+            <v-btn icon ripple :href="msg.link" target="_blank">
+              <v-icon class="grey white--text">link</v-icon>
+            </v-btn>
+          </v-list-item-action>
+        </v-list-item>
+      </template>
+    </v-list>
     <div style='text-align: center'>
       <v-progress-circular indeterminate color='primary'
         v-if='! finished'

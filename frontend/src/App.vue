@@ -1,7 +1,9 @@
 <template>
   <v-app>
     <toolbar />
-    <msgs />
+    <v-content>
+      <msgs />
+    </v-content>
   </v-app>
 </template>
 
