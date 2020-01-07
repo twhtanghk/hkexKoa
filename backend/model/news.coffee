@@ -1,5 +1,5 @@
-db = require 'jsOAuth2/backend/model/db'
-Model = require 'jsOAuth2/backend/model/model'
+db = require 'koamodel/db'
+Model = require 'koamodel'
 
 db.addMiddleware ({collection}) -> (next) -> (args, method) ->
   if collection.name == 'news' and method == 'insert'
