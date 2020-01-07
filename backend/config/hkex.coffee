@@ -19,7 +19,8 @@ module.exports =
     stock: ->
       for await i from HKEXList()
         curr = await stock.model.findOne _.pick(i, 'code')
+        i = _.pick i, stock.attributes
         if curr?
-          await stock.model.update _.pick(i, 'code'), i
+          await stock.model.update _.pick(i, 'code'), $set: i
         else
           await stock.model.insert i
