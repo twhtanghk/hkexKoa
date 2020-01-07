@@ -1,3 +1,6 @@
+{hkex} = require './hkex'
+{news, stock} = hkex
+
 module.exports = 
   cron: [ 
     {
@@ -9,14 +12,12 @@ module.exports =
         # run per 30 minute on Sat or Sun
         "0 */30 * * * 0,6"
       ]
-      task: =>
-        @hkex.news()
+      task: news
     }
     {
       at: [
-        "0 20 * * * *"
+        "0 0 20 * * *"
       ]
-      task: =>
-        @hkex.stock()
+      task: stock
     }
   ]

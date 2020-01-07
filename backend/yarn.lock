@@ -995,7 +995,7 @@ koa@^2.11.0:
 
 "koamodel@https://github.com/twhtanghk/koamodel":
   version "0.0.0"
-  resolved "https://github.com/twhtanghk/koamodel#d579332422525cf17e8c4f6cce3d15d42823b845"
+  resolved "https://github.com/twhtanghk/koamodel#89d89750abd2435c1b3e1d1a242ebdbba5dd6da0"
 
 locate-path@^3.0.0:
   version "3.0.0"
