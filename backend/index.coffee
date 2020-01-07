@@ -26,3 +26,4 @@ module.exports = new Promise (resolve, reject) ->
       require('config')()
         .bootstrap()
       resolve server
+    .on 'error', console.error

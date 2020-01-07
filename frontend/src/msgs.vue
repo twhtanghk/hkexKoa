@@ -1,22 +1,29 @@
 <template>
-  <v-list two-line v-scroll='nextPage'>
-    <template v-for="(msg, i) in msgs">
-      <v-list-tile>
-        <v-list-tile-avatar>
-          <v-icon class="grey white--text">event_note</v-icon>
-        </v-list-tile-avatar>
-        <v-list-tile-content>
-          <v-list-tile-title v-html="title(msg)" />
-          <v-list-tile-sub-title v-html="subtitle(msg)" />
-        </v-list-tile-content>
-        <v-list-tile-action>
-          <v-btn icon ripple :href="msg.link" target="_blank">
-            <v-icon class="grey white--text">link</v-icon>
-          </v-btn>
-        </v-list-tile-action>
-      </v-list-tile>
-    </template>
-  </v-list>
+  <div>
+    <v-list two-line>
+      <template v-for="(msg, i) in msgs">
+        <v-list-item>
+          <v-list-item-avatar>
+            <v-icon class="grey white--text">event_note</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title v-html="title(msg)" />
+            <v-list-item-subtitle v-html="subtitle(msg)" />
+          </v-list-item-content>
+          <v-list-item-action>
+            <v-btn icon ripple :href="msg.link" target="_blank">
+              <v-icon class="grey white--text">link</v-icon>
+            </v-btn>
+          </v-list-item-action>
+        </v-list-item>
+      </template>
+    </v-list>
+    <div style='text-align: center'>
+      <v-progress-circular indeterminate color='primary'
+        v-if='! finished'
+        v-intersect='next' />
+    </div>
+  </div>
 </template>
 
 <script lang='coffee'>
@@ -25,14 +32,15 @@
 export default
   data: ->
     msgs: []
+    finished: false
   methods:
     title: (msg) ->
       "<span class='text--primary'>#{msg.code} #{msg.name}</span> #{msg.type} #{msg.typeDetail}"
     subtitle: (msg) ->
       "<span class='text--primary'>#{msg.title}</span> #{new Date(msg.releasedAt).toLocaleString()}"
-    nextPage: ->
-      if document.documentElement.scrollTop + window.innerHeight == document.documentElement.offsetHeight
-        @load @msgs.length
+    next: (entries) ->
+      if entries[0].isIntersecting
+        @finished = 30 > await @load @msgs.length
     load: (skip = 0) ->
       try
         data =

@@ -1,7 +1,7 @@
 <template>
-  <v-toolbar color='primary'>
+  <v-app-bar color='primary'>
     <v-toolbar-title class='white--text'>
       HKEx
     </v-toolbar-title>
-  </v-toolbar>
+  </v-app-bar>
 </template>

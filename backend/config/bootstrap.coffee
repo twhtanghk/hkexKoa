@@ -3,10 +3,11 @@ scheduler = require 'node-schedule'
 module.exports =
   bootstrap: ->
     process.on 'SIGTERM', =>
-      @hkex()
-    @cron.map (at) =>
+      @cron.map ({at, task}) ->
+        task()
+    @cron.map ({at, task}) =>
       scheduler.scheduleJob at, =>
         try
-          @hkex()
+          task()
         catch err
           console.error err
