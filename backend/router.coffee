@@ -9,8 +9,11 @@ stock = require './model/stock'
     'find'
     'findOne'
   ]
+code = (ctx, next) ->
+  ctx.params.code = ctx.params.code.padStart 5, '0'
+  await next()
 
 module.exports = router
   .get '/api/news', news.find
   .get '/api/stock', stock.find
-  .get '/api/stock/:code', stock.findOne
+  .get '/api/stock/:code', code, stock.findOne
