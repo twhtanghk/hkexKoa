@@ -17,10 +17,13 @@ module.exports =
         else
           break
     stock: ->
-      for await i from HKEXList()
-        curr = await stock.model.findOne _.pick(i, 'code')
-        i = _.pick i, stock.attributes
-        if curr?
-          await stock.model.update _.pick(i, 'code'), $set: i
-        else
-          await stock.model.insert i
+      try
+        for await i from HKEXList()
+          curr = await stock.model.findOne _.pick(i, 'code')
+          i = _.pick i, stock.attributes
+          if curr?
+            await stock.model.update _.pick(i, 'code'), $set: i
+          else
+            await stock.model.insert i
+      catch err
+        console.error err
