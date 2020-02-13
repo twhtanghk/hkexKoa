@@ -71,6 +71,7 @@ export default
               {name: pattern}
               {type: pattern}
               {typeDetail: pattern}
+              {title: pattern}
             ]
         @load @opts
 </script>
