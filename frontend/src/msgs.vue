@@ -27,12 +27,18 @@
 </template>
 
 <script lang='coffee'>
+_ = require 'lodash'
+eventBus = require('./eventBus').default
 {News} = require('./model').default
 
 export default
   data: ->
     msgs: []
     finished: false
+    opts:
+      skip: 0
+      sort:
+        releasedAt: -1
   methods:
     title: (msg) ->
       "<span class='text--primary'>#{msg.code} #{msg.name}</span> #{msg.type} #{msg.typeDetail}"
@@ -40,18 +46,31 @@ export default
       "<span class='text--primary'>#{msg.title}</span> #{new Date(msg.releasedAt).toLocaleString()}"
     next: (entries) ->
       if entries[0].isIntersecting
-        @finished = 30 > await @load @msgs.length
-    load: (skip = 0) ->
+        @finished = 30 > await @load skip: @msgs.length
+    load: (opts) ->
       try
-        data =
-          skip: skip
-          sort:
-            releasedAt: -1
-        res = await News.get data: data
+        @opts = _.defaults opts, @opts
+        res = await News.get data: @opts
         for i in res
           @msgs.push i
       catch err
         console.error err   
   created: ->
-    @load()
+    eventBus
+      .$on 'search', (value) =>
+        @msgs.splice 0, @msgs.length
+        @opts =
+          skip: 0
+          sort:
+            releasedAt: -1
+        if value? and value != ''
+          pattern = '$regex': value
+          @opts = _.extend @opts,
+            $or: [
+              {code: pattern}
+              {name: pattern}
+              {type: pattern}
+              {typeDetail: pattern}
+            ]
+        @load @opts
 </script>
