@@ -10,6 +10,9 @@ process.env.HKEX_URL = url.toString()
 module.exports =
   publicPath: './'
   outputDir: '../backend/dist'
+  pwa:
+    name: 'hkexkoa'
+    workboxPluginMode: 'GenerateSW'
   lintOnSave: false
   devServer:
     host: '0.0.0.0'
