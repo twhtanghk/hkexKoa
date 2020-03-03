@@ -7,8 +7,20 @@
             <v-icon class="grey white--text">event_note</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title v-html="title(msg)" />
-            <v-list-item-subtitle v-html="subtitle(msg)" />
+            <v-list-item-title>
+              <quote :symbol='msg.code'/>
+              <chart :symbol='msg.code'/>
+              <span class='text--primary'>
+                {{msg.name}}
+              </span>
+              {{msg.type}} {{msg.typeDetail}}
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              <span class='text--primary'>
+                {{msg.title}}
+              </span>
+              {{new Date(msg.releasedAt).toLocaleString()}}
+            </v-list-item-subtitle>
           </v-list-item-content>
           <v-list-item-action>
             <v-btn icon ripple :href="msg.link" target="_blank">
@@ -32,6 +44,9 @@ eventBus = require('./eventBus').default
 {News} = require('./model').default
 
 export default
+  components:
+    quote: require('portfolio/frontend/src//quote').default
+    chart: require('portfolio/frontend/src/chart').default
   data: ->
     msgs: []
     finished: false
@@ -40,10 +55,6 @@ export default
       sort:
         releasedAt: -1
   methods:
-    title: (msg) ->
-      "<span class='text--primary'>#{msg.code} #{msg.name}</span> #{msg.type} #{msg.typeDetail}"
-    subtitle: (msg) ->
-      "<span class='text--primary'>#{msg.title}</span> #{new Date(msg.releasedAt).toLocaleString()}"
     next: (entries) ->
       if entries[0].isIntersecting
         @finished = 30 > await @load skip: @msgs.length

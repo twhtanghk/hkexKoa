@@ -6461,6 +6461,10 @@ portfinder@^1.0.25:
     debug "^3.1.1"
     mkdirp "^0.5.1"
 
+"portfolio@https://github.com/twhtanghk/portfolio":
+  version "0.0.0"
+  resolved "https://github.com/twhtanghk/portfolio#5f3f0c1aff0ccdeb6faaa6e034d924d0e35511c4"
+
 posix-character-classes@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
