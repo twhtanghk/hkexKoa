@@ -15,7 +15,7 @@ module.exports =
         if found?
           break
         else
-          news.model.insert i
+          await news.model.insert i
     stock: ->
       try
         for await i from HKEXList()
