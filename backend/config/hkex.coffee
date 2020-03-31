@@ -12,7 +12,7 @@ module.exports =
       hkex = new HKEXNew dtStart: moment last?.releasedAt
       for await i from hkex.iter()
         releasedAt = moment i.releasedAt
-        if last == null or moment(last.releasedAt).isBefore releasedAt
+        if last == null or releasedAt.isAfter moment last.releasedAt
           news.model.insert i
         else
           break
