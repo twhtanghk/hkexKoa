@@ -11,11 +11,11 @@ module.exports =
       console.log "get news starting from #{last?.releasedAt.toString()} at #{new Date().toString()}"
       hkex = new HKEXNew dtStart: moment last?.releasedAt
       for await i from hkex.iter()
-        releasedAt = moment i.releasedAt
-        if last == null or releasedAt.isAfter moment last.releasedAt
-          news.model.insert i
-        else
+        found = await news.model.findOne i
+        if found?
           break
+        else
+          await news.model.insert i
     stock: ->
       try
         for await i from HKEXList()
