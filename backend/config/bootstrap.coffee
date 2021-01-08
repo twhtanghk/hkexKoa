@@ -11,3 +11,4 @@ module.exports =
           task()
         catch err
           console.error err
+    @

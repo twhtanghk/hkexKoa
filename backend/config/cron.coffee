@@ -20,4 +20,16 @@ module.exports =
       ]
       task: stock
     }
+    {
+      at: [
+        "0 */3 9-15 * * 1-5"
+      ]
+      task: ->
+        {stock, mqtt} = global.config
+        for code, name of stock
+          mqtt.client.publish 'stock/hkex', JSON.stringify
+            src: 'hkex'
+            symbol: code
+            name: name
+    }
   ]

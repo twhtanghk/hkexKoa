@@ -6,6 +6,7 @@ router = require './router'
 serve = require 'koa-static'
 cors = require '@koa/cors'
 Promise = require 'bluebird'
+global.config = require('config')().bootstrap()
 
 app = new Koa()
 app.context.onerror = require 'koa-better-error-handler'
@@ -20,10 +21,5 @@ module.exports = new Promise (resolve, reject) ->
     .use router.routes()
     .use router.allowedMethods()
     .use serve 'dist'
-    .listen parseInt(process.env.PORT) || 3000, (err) ->
-      if err?
-        return reject err
-      require('config')()
-        .bootstrap()
-      resolve server
+    .listen parseInt(process.env.PORT) || 3000
     .on 'error', console.error
